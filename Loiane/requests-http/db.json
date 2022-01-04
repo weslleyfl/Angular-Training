@@ -1,0 +1,40 @@
+{
+  "cursos": [
+    {
+      "id": 1,
+      "nome": "Angular"
+    },
+    {
+      "id": 2,
+      "nome": "Java horrivel"
+    },
+    {
+      "nome": "Angular Material",
+      "id": 3
+    },
+    {
+      "nome": "Material",
+      "id": 4
+    },
+    {
+      "nome": "Material 2",
+      "id": 5
+    },
+    {
+      "nome": "Material 3",
+      "id": 6
+    },
+    {
+      "id": 8,
+      "nome": "Material 6 para deletar"
+    },
+    {
+      "id": 9,
+      "nome": "React native"
+    },
+    {
+      "id": 10,
+      "nome": "Curso 55 novo service 2"
+    }
+  ]
+}

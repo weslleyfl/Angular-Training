@@ -1,0 +1,35 @@
+GET http://localhost:3000/cursos
+
+###
+
+GET http://localhost:3000/cursos/1
+
+// https://www.npmjs.com/package/json-server
+// json-server --watch db.json
+###
+
+POST http://localhost:3000/cursos HTTP/1.1
+content-type: application/json
+
+
+  {
+    "id": 9,
+    "nome": "Lixo do Java"
+  }
+
+##
+
+###
+
+PUT http://localhost:3000/cursos/9 HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Java OO"
+}
+
+###
+
+DELETE http://localhost:3000/cursos/9
+
+###

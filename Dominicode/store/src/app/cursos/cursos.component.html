@@ -1,0 +1,9 @@
+<p>Parent : Lista de cursos do portal {{ nomePortal }}</p>
+
+<app-cursos-detalhe [nomeCurso]="nomePortal" (novoCursoEvento)="adicionarCurso($event)" ></app-cursos-detalhe>
+
+<ul>
+  <li *ngFor="let item of cursos">
+    {{item}}
+  </li>
+</ul>

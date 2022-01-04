@@ -1,0 +1,37 @@
+<p>diretivas-customizadas works!</p>
+<p>
+  <span fundoAmarelo>Texto com fundo amarelo</span>
+</p>
+
+<button fundoAmarelo >Botao com fundo amarelo</button>
+
+<p highlightMouse>
+  Texto com hightlight quando eu passo o mouse em cima
+</p>
+
+<!-- <p hightlight [defaultColor]="'grey'" [highlightColor]="'green'">
+  Texto com hightlight com cores atualizadas
+</p> -->
+<!--Input Property com o mesmo nome da Directive-->
+<p [hightlight]="'red'" [defaultColor]="'grey'">
+  Texto com hightlight com cores atualizadas
+</p>
+
+
+<div *ngIf="meuFavorito; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>Cursos - True - Content to render when condition is true.</ng-template>
+<ng-template #elseBlock>Cursos - False -Content to render when condition is false.</ng-template>
+<br> <br>
+<!-- <button (click)="onClick()">Mostrar ou esconder Cursos</button> -->
+ <p></p>
+
+<div *ngIf="meuFavorito" >
+  Lista de cursos aqui
+</div>
+<div *ngElseDirective="meuFavorito">
+  Não existe Lista de cursos
+</div>
+
+<br> <br>
+<button (click)="onClick()">Mostrar ou esconder Cursos</button>
+ <p></p>

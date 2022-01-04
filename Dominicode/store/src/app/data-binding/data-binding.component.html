@@ -1,0 +1,89 @@
+<!-- <h1>data-binding works!</h1>
+<article>
+  <h3>Class e Style Binding</h3>
+  <div>
+    Selecione uma classe:
+    <select #classe (change)="(0)" name="" id="">
+      <option value="alert-success" role="alert">success</option>
+      <option value="alert-info" role="alert">Info</option>
+      <option value="alert-warning" role="alert">warning</option>
+      <option value="alert-danger" role="alert">danger</option>
+    </select>
+  </div>
+  <br /><br />
+  <div>
+    <div
+      class="alert"
+      role="alert"
+      [class.alert-success]="classe.value == 'alert-success'"
+    >
+      <a href="#" class="alert-link">alert-success</a>
+    </div>
+    <div
+      class="alert"
+      role="alert"
+      [class.alert-info]="classe.value == 'alert-info'"
+    >
+      <a href="#" class="alert-link">alert-info</a>
+    </div>
+    <div class="alert" role="alert">
+      <a href="#" class="alert-link">alert-warning</a>
+    </div>
+    <div class="alert" role="alert">
+      <a href="#" class="alert-link">alert-danger</a>
+    </div>
+  </div>
+
+  <div class="alert {{ classe.value }}" role="alert">
+    Texto colorido conforme combobox
+  </div>
+
+  <div
+    class="alert alert-danger"
+    role="alert"
+    [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'"
+  >
+    Erro
+  </div>
+</article> -->
+ <!-- (keyup.enter)="salvarValor($event.target)" -->
+<!--
+<section>
+  <article>
+    <h3>Class e Style Binding</h3>
+
+    <div>
+      <button class="btn btn-primary" (click)="botaoClicado()">
+        Me clique!
+      </button>
+      <br /><br />
+      <input
+        #campoInput
+        type="text"
+        name=""
+        id=""
+        (keyup)="onKeyUp($event)"
+        (keyup.enter)="salvarValor(campoInput.value)"
+        (blur)="salvarValor(campoInput.value)"
+      />
+      <br />
+      Valor Atual: {{ valorAtual }}
+      <br />
+      Valor Salvo: {{ valorSalvo }}
+      <br />
+      <span
+        (mouseover)="onMouseOverOut()"
+        (mouseout)="onMouseOverOut()"
+        [class.highlight]="isMouseOver"
+      >
+        passe o mouse aqui
+      </span>
+    </div>
+  </article>
+</section>
+-->
+
+<input type="text" readonly name="campoValor" #campoValor>
+<button (click)="botaoClicado()" >clicque</button>
+
+<!-- <app-meu-form></app-meu-form> -->

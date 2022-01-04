@@ -1,0 +1,19 @@
+<p>Child: cursos-detalhe works!</p>
+
+<div *ngIf="nomeCurso">
+  <h1>{{ nomeCurso }}</h1>
+</div>
+
+
+
+<app-meu-segundo></app-meu-segundo>
+
+<p></p>
+
+<label for="curso-input">Adicionar Curso detlhe</label>
+<input type="text" placeholder="Nome Curso" [(ngModel)]="novoCursoDetalhe" name="novoCursoDetalhe" id="curso-input" #novoCurso >
+<button (click)="adicionarNovoCurso()">Adicionar para o Parent List</button>
+
+<p>
+  {{ novoCursoDetalhe }}
+</p>

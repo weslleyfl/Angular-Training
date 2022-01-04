@@ -1,0 +1,100 @@
+<!-- **** Estilo de template driven **** -->
+
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)" novalidate>
+
+    <div class="form-group" [ngClass]="aplicaCssErro(name)">
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" placeholder="Nome Usuario"
+        name="nome" [(ngModel)]="usuario.nome" required maxlength="25" minlength="6"
+        #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"/>
+      <div *ngIf="validacaoCampo(name)" class="alert alert-danger" role="alert" >
+        <div *ngIf="name.errors?.required">Nome é obrigatório!</div>
+        <div *ngIf="name.errors?.minlength">Nome deve ter no minimo 6 caracteres.</div>
+        <div *ngIf="name.errors?.maxlength">Nome deve ter no maximo 25 caracteres.</div>
+      </div>
+      <!-- 'name' vai associar ao 'ngModel' sem o [()] o campo nao e inicializado
+       caso queira so inicializar (ngmodel)  -->
+    </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="nome@email.com"
+      name="email" [ngModel]="usuario.email" required email #email="ngModel"
+      [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"/>
+    <div  *ngIf="validacaoCampo(email)" class="alert alert-danger" role="alert">
+      <div *ngIf="email.errors.required">Email é obrigatório!</div>
+      <div *ngIf="email.errors.email">Email must be a valid email address</div>
+    </div>
+  </div>
+
+  <!-- Agrupar campos -->
+  <div ngModelGroup="endereco">
+
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="cep">CEP</label>
+        <input type="text" class="form-control" id="inputCep"
+        name="cep" ngModel required #cep="ngModel"
+        [ngClass]="aplicaCssAlertaErro(f,cep)"
+        (blur)="consultaCEP($event.target.value, f)"
+        placeholder="00-000-000">
+        <!-- <div *ngIf="validacaoCampo(cep)" class="alert alert-danger" role="alert">
+          <div *ngIf="verificarCampoObrigatorio(cep)">Cep é obrigatório!</div>
+        </div> -->
+        <app-campo-control-erro [mostrarErro]="validacaoCampo(cep)" msgErro="Cep é obrigatório!"
+        [campoObrigatorio]="verificarCampoObrigatorio(cep)"> </app-campo-control-erro>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="numero">Número</label>
+        <input type="number" class="form-control" id="numero"
+        name="numero" ngModel required #numero="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && numero.invalid }">
+        <div *ngIf="validacaoCampo(numero)" class="alert alert-danger" role="alert">
+          <div *ngIf="numero.errors.required">Número é obrigatório!</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="complemento">Complemento</label>
+        <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="rua">Rua</label>
+      <input type="text" class="form-control" id="rua" name="rua" ngModel required #rua="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && rua.invalid }" readonly/>
+      <div *ngIf="validacaoCampo(rua)" class="alert alert-danger" role="alert">
+        <div *ngIf="rua.errors.required">Rua é obrigatório!</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="bairro">Bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" ngModel #bairro="ngModel" readonly>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="cidade">Cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" ngModel #cidade="ngModel" readonly>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="estado">Estado</label>
+        <select id="estado" class="form-control" id="estado" name="estado" ngModel #estado="ngModel" readonly>
+          <option value="" selected>Selecione...</option>
+          <option value="MG">MG</option>
+          <option value="SP">SP</option>
+          <option value="RJ">RJ</option>
+        </select>
+      </div>
+    </div>
+
+</div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+    Submit
+  </button>
+  <p>
+  <app-form-debug [form]="f" ></app-form-debug>
+  </p>
+
+</form>

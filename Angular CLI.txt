@@ -1,0 +1,46 @@
+https://angular.io/guide/setup-local
+Node instalado!
+npm install -g @angular/cli
+
+ng generate component xyz
+
+ng generate ...
+component
+service
+directive
+pipe
+class
+interface
+enum
+
+ng lint
+ng test  --- teste de unidade - Karma com jasmine
+ng e2e --- teste integrados end to end - protractor
+
+-- alterar o tipo de estilo do projeto 
+ng set default.styleExt scss 
+
+--Gerando build
+
+ng build --target=development --environment=dev
+ng build --dev --e=dev
+ng build --dev
+ng build
+
+-- Para produçao
+
+ng build --target=production --environment=prod
+ng build --prod --env=prod
+ng build --prod
+
+---Servidor web do node para testes
+http-serve
+npm install --global http-server
+Usage:
+ http-server [path] [options]
+ C:\Users\weslleylopes\Downloads\starter-template>http-server
+ 
+ --Criando component quando tem varios modulos
+ng g c new-component --module app
+//Or if you are in an other directory then
+ng g c component-name --module ../

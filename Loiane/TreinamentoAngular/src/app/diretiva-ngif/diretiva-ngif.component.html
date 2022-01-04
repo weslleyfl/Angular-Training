@@ -1,0 +1,145 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a
+        class="nav-item nav-link"
+        [class.active]="aba == 'home'"
+        (click)="aba = 'home'"
+        href="#"
+        >Home</a
+      >
+      <a
+        class="nav-item nav-link"
+        [class.active]="aba == 'features'"
+        (click)="aba = 'features'"
+        href="#"
+        >Features</a
+      >
+      <a
+        class="nav-item nav-link"
+        [class.active]="aba == 'pricing'"
+        (click)="aba = 'pricing'"
+        href="#"
+        >Pricing</a
+      >
+    </div>
+  </div>
+</nav>
+
+<div class="container" [ngSwitch]="aba">
+  <p *ngSwitchCase="'features'">Modo features ativado</p>
+  <p *ngSwitchCase="'pricing'">Modo pricing ativado</p>
+  <div *ngSwitchDefault>Modo Home ativado</div>
+</div>
+
+<div class="container">
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let item of lista; let i = index"
+      [class.active]="i % 2 == 0"
+    >
+      {{ i + 1 }} - {{ item }}
+    </li>
+  </ul>
+</div>
+
+<br />
+
+<div class="container">
+  <!-- <p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p>
+  <p>Search icon: <span class="glyphicon glyphicon-search"></span></p>
+  <p>Print icon: <span class="glyphicon glyphicon-print"></span></p>
+  <p>Print icon: <span class="glyphicon glyphicon-star"></span></p>
+  <p>Print icon: <span class="glyphicon glyphicon-star-empty"></span></p> -->
+  <!-- <p>An icon along with some text: <i class="fas fa-thumbs-up"></i></p>
+  <i class="fas fa-cloud"></i>
+  <i class="fas fa-coffee"></i>
+  <i class="fas fa-car"></i>
+  <i class="fas fa-file"></i>
+  <i class="fas fa-bars"></i>
+  <i class="fas fa-star"></i>
+  <i class="far fa-star"></i> -->
+
+  <h1>
+    <i class="{{ meuFavorito ? 'fas' : 'far' }} fa-star" (click)="onClick()">
+    </i>
+  </h1>
+  <br />
+  <h2>
+    <i
+      [ngClass]="{
+        fas: meuFavorito,
+        far: !meuFavorito
+      }"
+      class="fa-star"
+      (click)="onClick()"
+    >
+    </i>
+  </h2>
+  <br />
+  <h3>
+    <i
+      [class.fas]="meuFavorito"
+      [class.far]="!meuFavorito"
+      class="fa-star"
+      (click)="onClick()"
+    >
+    </i>
+  </h3>
+  <br />
+  <br />
+  <button
+    [ngStyle]="{
+      backgroundColor: meuFavorito ? 'blue' : 'red',
+      color: 'white',
+      fontSize: tamanho + 'px'
+    }"
+    (click)="onClick()"
+  >
+    NgStyle
+  </button>
+  <br /><br />
+  <input type="number" [(ngModel)]="tamanho" />
+  <br />
+  Font tamanho: {{ tamanho }}
+</div>
+<p>Inicio</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  <h2>Single-slot content projection</h2>
+  <div class="card">
+    <div class="card-header">
+      <ng-content select=".titulo"></ng-content>
+    </div>
+    <div class="card-body">
+      <ng-content></ng-content>
+      <h2>Multi-slot content projection</h2>
+      Question:
+      <ng-content select="[question]"></ng-content>
+    </div>
+  </div>
+
+</div>
+<p>Fim</p>

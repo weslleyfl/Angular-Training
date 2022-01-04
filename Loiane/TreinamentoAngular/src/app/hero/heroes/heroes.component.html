@@ -1,0 +1,18 @@
+<p>heroes works!</p>
+<br>
+
+
+<div class="container">
+  <p>
+    <input type="text" #heroInput class="">
+    <button (click)="onAddHero(heroInput.value)" > Add Hero</button>
+  </p>
+  <ul class="list-group">
+    <li *ngFor="let item of listaHerois" class="list-group-item" >
+      {{ item }}
+    </li>
+  </ul>
+
+  <br>
+  <span *ngIf="hero">Este é o novo Heroi: {{hero}}</span>
+</div>

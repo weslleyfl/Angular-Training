@@ -1,0 +1,14 @@
+<p>meu-form works!</p>
+
+<section>
+  <article>
+    <input type="text" name="nome" [(ngModel)]="nome">
+    <p>Voce digitou {{ nome }}</p>
+    <div class="container">
+      <input type="text" [(ngModel)]="pessoa.nome">
+      <input type="text" [(ngModel)]="pessoa.idade">
+      <p>Meu nome é {{pessoa.nome}} e minha idade é {{ pessoa.idade }}</p>
+    </div>
+  </article>
+</section>
+

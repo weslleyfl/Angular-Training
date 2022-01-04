@@ -1,0 +1,26 @@
+<h2>Lista de cursos</h2>
+<p>Pagina: {{ pagina }}</p>
+<div class="collection">
+  <a
+    class="collection-item"
+    *ngFor="let curso of cursos"
+    [routerLink]="['/cursos', curso.id]"
+  >
+    {{ curso.nome }}
+  </a>
+</div>
+<br />
+<button (click)="proximaPagina()" class="btn waves-effect waves-light">
+  Prox: Pagina <i class="material-icons right">send</i>
+</button>
+
+
+
+<!-- <form materialize class="col s12">
+  <div class="row">
+    <div class="input-field col s6">
+      <input placeholder="Placeholders" id="first_name" type="text" class="validate">
+      <label for="first_name">First Name</label>
+    </div>
+  </div>
+</form> -->

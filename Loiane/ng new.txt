@@ -1,0 +1,30 @@
+ng new nome_do_projeto --routing --style=scss -S
+
+
+-S --> É para nao gerar os arquivos de testes
+
+
+
+--- https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/
+-- https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/#4-bootstrap-javascript-components-with-ngx-bootstrap-option-1
+
+npm install bootstrap@4.1.3 --save
+
+-*** Preferencia dela
+
+npm install bootstrap ngx-bootstrap --save
+depois:
+src/style.css:
+@import './styles/bootstrap-3.3.7-dist/css/bootstrap.min.css';
+
+- Insalando componentes
+ng add ngx-bootstrap  --component collapse
+
+- Gerando modulo com routa configurado no modulo app
+ ng generate module customers --route customers --module app.module
+
+-- Simular um servidor backEND WEB API
+https://www.npmjs.com/package/json-server
+npm install -g json-server
+db.json criar
+json-server --watch db.json

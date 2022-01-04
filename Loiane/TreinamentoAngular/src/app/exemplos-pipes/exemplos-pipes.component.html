@@ -1,0 +1,30 @@
+<p>exemplos-pipes works!</p>
+
+<p>Titulo {{ livro.titulo | uppercase | camelCase }}</p>
+<p>Texto Estrelas: {{ livro.rating | number: "1.1-2" }}</p>
+<p>Texto numeroPaginas: {{ livro.numeroPaginas | number }}</p>
+<p>Texto preco: {{ livro.preco | currency: "BRL" }}</p>
+<p>Texto dataLancamento: {{ livro.dataLancamento | date }}</p>
+<p>Texto url: {{ livro.url }}</p>
+<br />
+<p>Texto qualquer: {{ livro | json }}</p>
+
+<br />
+<br />
+<h2>Maneira correta de realizar filtro em array listas</h2>
+<input type="text" #curso />
+<button class="btn btn-secondary" (click)="adicionarCurso(curso.value)">
+  Adicionar Curso
+</button>
+<br />
+<input type="text" [(ngModel)]="filtro" />
+<br />
+<ul>
+  <li *ngFor="let item of obterCursos()">
+    {{ item }}
+  </li>
+</ul>
+
+<p>{{ valorAsync | async }}</p>
+
+<p>{{ valorAsync2 | async }}</p>

@@ -1,0 +1,246 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01">First name</label>
+      <input type="text" formControlName="firstName" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" >
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Last name</label>
+      <input type="text" formControlName="lastName" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" >
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustomUsername">Username</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+        </div>
+        <input type="text" formControlName="userName" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend">
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div formGroupName="address" class="form-row">
+
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom04">State</label>
+      <select class="form-control" id="validationCustom04" formControlName="state">
+        <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+      </select>
+      <!-- <input type="text" formControlName="state" class="form-control" id="validationCustom04" placeholder="State" > -->
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03">City</label>
+      <select class="form-control" id="validationCustom03" formControlName="city">
+        <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+      </select>
+
+      <!-- <input type="text" formControlName="city" class="form-control" id="validationCustom03" placeholder="City" > -->
+
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <label for="validationCustom05">Zip</label>
+      <!-- <input type="text" formControlName="zip" class="form-control"  id="validationCustom05" placeholder="Zip"
+         (blur)="consultaCEP()"> -->
+      <!-- Este campo é validado de forma reativa (no arquivo .ts) não por evento -->
+      <input type="text" formControlName="zip" class="form-control"  id="validationCustom05" placeholder="Zip">
+      <app-error-msg [control]="formulario.get('address.zip')" label="CEP" ></app-error-msg>
+      <!-- <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div> -->
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-12">
+        <label for="estado">Estado</label>
+        <select formControlName="estado" id="estado" class="form-control" name="estado" readonly>
+          <option value="" selected>Selecione...</option>
+          <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+          <!-- <option value="MG">MG</option>
+          <option value="SP">SP</option>
+          <option value="RJ">RJ</option> -->
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <h2>Aliases</h2>
+  </div>
+  <!-- // Array dinamico -->
+  <div formArrayName="aliases" class="form-row">
+    <div class="col-md-6 mb-6">
+      <button type="button" (click)="addAlias()" class="btn btn-default">+ Add another alias</button>
+      <div *ngFor="let alias of aliases.controls; let i=index">
+        <!-- The repeated alias template -->
+        <label for="alias-{{ i }}">Alias:</label>
+        <input type="text" class="form-control" id="alias-{{ i }}" [formControlName]="i" >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" formControlName="invalidCheck" type="checkbox" value="" id="invalidCheck">
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+
+
+<!-- Trabalhando com objetos complexos use este select opiton abaixo
+a diretiva [ngValue] e [compareWith] que realizar o Trabalho
+Para outros tipos primitivos (string, boolean, number) use o padrao [value] -->
+<!-- https://angular.io/api/forms/SelectControlValueAccessor -->
+
+<div class="form-row">
+
+
+      <div class="col-md-4 mb-4" [ngClass]="">
+        <label for="cargo" class="control-label">Cargo</label>
+        <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos" >
+          <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-4" [ngClass]="">
+        <label for="tecnologias" class="control-label">Tecnologia</label>
+        <select multiple class="form-control" id="tecnologias" formControlName="tecnologias" >
+          <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-4" [ngClass]="">
+        <label for="newsletter" class="control-label">Newsletter</label>
+        <div id="newsletter" class="row">
+          <div class="col-sm-4" *ngFor="let item of newsletterOp">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.valor" formControlName="newsletter" /> {{ item.desc }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+<form class="was-validated">
+  <div class="custom-control custom-checkbox mb-3">
+
+    <div class="form-group">
+
+      <div class="col-md-6">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" formControlName="inlineCheckbox1" id="inlineCheckbox1" required>
+          <label class="form-check-label" for="inlineCheckbox1">
+            Aceite os termos e condições
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" [ngClass]="aplicaCssErro('frameworks')">
+      <label for="frameworks">Frameworks</label>
+      <div id="frameworks" class="row">
+        <div class="checkbox" class="col-sm-12" formArrayName="frameworks"
+          *ngFor="let item of getFrameworksControls(); let i = index" >
+          <label class="checkbox-inline">
+            <input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+          </label>
+        </div>
+        <!--app-campo-control-erro [mostrarErro]="!formulario.get('frameworks').valid" msgErro="Selecione 1 opção">
+          </app-campo-control-erro -->
+      </div>
+      <!-- <app-error-msg [control]="formulario.get('frameworks')" label="Frameworks"></app-error-msg> -->
+    </div>
+
+  </div>
+
+  <!-- EMAIL -->
+
+  <div class="form-group" [ngClass]="aplicaCssErro('email')">
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="email" class="form-control" formControlName="email" id="email" placeholder="nome@email.com">
+      <app-error-msg [control]="formulario.get('email')" label="Email"></app-error-msg>
+      <!--app-campo-control-erro [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório.">
+      </app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaEmailInvalido()" msgErro="Email inválido.">
+      </app-campo-control-erro -->
+      <app-campo-control-erro [mostrarErro]="formulario.get('email').status === 'PENDING'"
+        msgErro="Validando email...">
+      </app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="formulario.get('email').status === 'VALID'"
+        msgErro="Email válido!">
+      </app-campo-control-erro>
+      <!--app-campo-control-erro [mostrarErro]="formulario.get('email').hasError('emailInvalido')"
+        msgErro="Email já cadastrado!">
+      </app-campo-control-erro -->
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="aplicaCssErro('confirmarEmail')">
+    <div class="col-sm-12">
+      <label for="confirmarEmail" class="control-label">Confirmar Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input type="confirmarEmail" class="form-control" formControlName="confirmarEmail" id="confirmarEmail" placeholder="nome@email.com">
+      <app-error-msg [control]="formulario.get('confirmarEmail')" label="Confirmar Email"></app-error-msg>
+      <!--app-campo-control-erro [mostrarErro]="formulario.get('confirmarEmail').hasError('equalsTo')"
+        msgErro="Emails não são iguais.">
+      </app-campo-control-erro -->
+    </div>
+
+    <!-- Input customizado  -->
+    <div class="col-sm-12">
+      <app-input-field formControlName="nome" [classeCss]="aplicaCssErro('nome')"
+        id="nome" label="Nome" [control]="formulario.get('nome')">
+      </app-input-field>
+    </div>
+
+  </div>
+
+
+
+</form>
+
+
+
+
+
+  <button class="btn btn-primary" type="submit">Submit form</button>
+  <button class="btn btn-secondary" (click)="resetar()" type="button">Cancelar</button>
+  <button class="btn btn-info" (click)="setarCargo()">Cargo</button>
+  <button class="btn btn-info" (click)="setarTecnologias()">Tecnologias</button>
+  <p>Form Status: {{ formulario.status }}</p>
+
+  <p>
+    <app-form-debug [form]="formulario"></app-form-debug>
+   </p>
+
+</form>
+
+
+
